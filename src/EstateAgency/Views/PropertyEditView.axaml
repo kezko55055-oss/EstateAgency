@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="EstateAgency.Views.PropertyEditView"
+             Tag="Карточка объекта">
+    <ScrollViewer>
+        <Grid ColumnDefinitions="*,*">
+            <StackPanel Spacing="5" Margin="0,0,16,0">
+                <TextBlock x:Name="HeaderText" Classes="heading" />
+                <TextBlock Text="Код объекта:" />
+                <TextBox x:Name="CodeBox" PlaceholderText="Например, KV-105" />
+                <TextBlock Text="Название:" />
+                <TextBox x:Name="TitleBox" />
+                <TextBlock Text="Адрес:" />
+                <TextBox x:Name="AddressBox" />
+                <TextBlock Text="Тип объекта:" />
+                <ComboBox x:Name="TypeBox" MinWidth="260" />
+                <TextBlock Text="Статус:" />
+                <ComboBox x:Name="StatusBox" MinWidth="260" />
+                <StackPanel x:Name="ManagerPanel" Spacing="5">
+                    <TextBlock Text="Ответственный менеджер:" />
+                    <ComboBox x:Name="ManagerBox" MinWidth="420" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Spacing="5">
+                <TextBlock Text="Цена, руб. (для аренды — за месяц):" />
+                <TextBox x:Name="PriceBox" />
+                <TextBlock Text="Площадь, м²:" />
+                <TextBox x:Name="AreaBox" />
+                <TextBlock Text="Комнат:" />
+                <TextBox x:Name="RoomsBox" />
+                <TextBlock Text="Согласовано показов (остаток):" />
+                <TextBox x:Name="ViewingsBox" />
+                <TextBlock Text="Файл изображения в Assets/Images (необязательно):" />
+                <TextBox x:Name="ImageBox" />
+                <TextBlock Text="Описание:" />
+                <TextBox x:Name="DescriptionBox" Height="70" TextWrapping="Wrap" AcceptsReturn="True" />
+                <Button x:Name="SaveButton" Content="Сохранить" Classes="accent" Click="SaveClick" />
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

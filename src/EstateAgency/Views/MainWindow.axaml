@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="EstateAgency.Views.MainWindow"
+        Title="Агентство недвижимости «Ключ»"
+        Width="1120" Height="760" MinWidth="1024" MinHeight="680"
+        WindowStartupLocation="CenterScreen"
+        Icon="avares://EstateAgency/Assets/app.ico">
+
+    <!-- DockPanel: элементы с DockPanel.Dock="Top" встают сверху друг под другом,
+         последний элемент (PageHost) занимает всё оставшееся место. -->
+    <DockPanel>
+
+        <!-- 1. Шапка: логотип слева, ФИО и роль пользователя справа. -->
+        <Border DockPanel.Dock="Top" Padding="16,10" Background="{StaticResource SurfaceBrush}">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <Image Source="avares://EstateAgency/Assets/logo.png"
+                       Width="250" Height="56" Stretch="Uniform" />
+                <TextBlock x:Name="UserText" Grid.Column="2" FontWeight="SemiBold"
+                           VerticalAlignment="Center" MaxWidth="480" />
+            </Grid>
+        </Border>
+
+        <!-- 2. Кнопки навигации. Click — имя метода в MainWindow.axaml.cs. -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="12,6">
+            <Button x:Name="BackButton" Content="Назад" Click="BackClick" />
+            <Button Content="Каталог" Click="CatalogClick" />
+            <Button x:Name="RequestsButton" Content="Заявки" Click="RequestsClick" />
+            <Button x:Name="PropertiesButton" Content="Объекты" Click="PropertiesClick" />
+            <Button x:Name="ReportsButton" Content="Отчёт" Click="ReportsClick" />
+            <Button x:Name="AccountButton" Content="Сменить пользователя" Click="LogoutClick" />
+        </StackPanel>
+
+        <!-- 3. Строка сообщений: ошибки и подтверждения. -->
+        <TextBlock x:Name="MessageText" DockPanel.Dock="Top" Margin="16,2" FontWeight="SemiBold" />
+
+        <!-- 4. Место, куда подставляется текущая страница. -->
+        <ContentControl x:Name="PageHost" Margin="16,8,16,16"
+                        HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+    </DockPanel>
+</Window>

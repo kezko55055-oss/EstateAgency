@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="EstateAgency.Views.LoginView"
+             Tag="Вход">
+    <StackPanel Spacing="12" MaxWidth="460" HorizontalAlignment="Left">
+        <TextBlock Classes="heading" Text="Вход в систему" />
+        <TextBlock Classes="muted" Text="Введите логин и пароль. Гость может посмотреть каталог без входа." />
+        <TextBlock Text="Логин:" />
+        <TextBox x:Name="LoginBox" Width="420" HorizontalAlignment="Left" PlaceholderText="Например, client_ivanov" />
+        <TextBlock Text="Пароль:" />
+        <TextBox x:Name="PasswordBox" Width="420" HorizontalAlignment="Left" PasswordChar="●" />
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="LoginButton" Content="Войти" Classes="accent" IsDefault="True" Click="LoginClick" />
+            <Button Content="Войти как гость" Click="GuestClick" />
+            <Button Content="Регистрация" Click="RegisterClick" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

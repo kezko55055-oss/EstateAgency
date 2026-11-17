@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="EstateAgency.Views.PropertiesManagementView"
+             Tag="Управление объектами">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Spacing="8">
+            <TextBlock Classes="heading" Text="Управление объектами" />
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Добавить объект" Classes="accent" Click="AddClick" />
+                <Button Content="Изменить выбранный" Click="EditClick" />
+                <Button x:Name="DeleteButton" Content="Удалить выбранный" Click="DeleteClick" />
+                <Button Content="Обновить" Click="ReloadClick" />
+            </StackPanel>
+            <Border x:Name="ConfirmPanel" IsVisible="False" Padding="10" CornerRadius="6"
+                    Background="{StaticResource LowStockBrush}">
+                <StackPanel Spacing="6">
+                    <TextBlock x:Name="ConfirmText" />
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Да, удалить" Click="ConfirmClick" />
+                        <Button Content="Отмена" Click="CancelClick" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <ListBox x:Name="PropertiesList" Margin="0,6,0,0" />
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="EstateAgency.Views.RequestDetailsView"
+             Tag="Состав заявки">
+    <ScrollViewer>
+        <StackPanel Spacing="8">
+            <!-- Сведения о заявке: заполняются из C#. -->
+            <TextBlock x:Name="HeaderText" Classes="heading" />
+            <TextBlock x:Name="ClientText" />
+            <TextBlock x:Name="PropertyText" />
+            <TextBlock x:Name="InfoText" />
+            <TextBlock x:Name="CommissionText" FontWeight="Bold" />
+
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="CancelRequestButton" Content="Отменить заявку" Click="CancelRequestClick" />
+                <Button x:Name="CompleteButton" Content="Завершить сделку" Classes="accent" Click="CompleteClick" />
+                <Button Content="Обновить" Click="ReloadClick" />
+            </StackPanel>
+
+            <!-- Подтверждение опасных действий. IsVisible="False" — сначала скрыто. -->
+            <Border x:Name="ConfirmPanel" IsVisible="False" Padding="10" CornerRadius="6"
+                    Background="{StaticResource LowStockBrush}">
+                <StackPanel Spacing="6">
+                    <TextBlock x:Name="ConfirmText" />
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="ConfirmButton" Content="Да, выполнить" Click="ConfirmClick" />
+                        <Button Content="Отмена" Click="ConfirmCancelClick" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="Показы по заявке:" FontWeight="SemiBold" />
+            <!-- Показы выводятся текстом из Viewing.ToString() (ModelExtras.cs). -->
+            <ListBox x:Name="ViewingsList" MaxHeight="150" />
+
+            <!-- Панель сотрудника: скрывается из C# для клиента. -->
+            <Border x:Name="StaffPanel" Classes="panel">
+                <StackPanel Spacing="6">
+                    <TextBlock Text="Работа менеджера" FontWeight="SemiBold" />
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <TextBlock Text="Новый показ:" VerticalAlignment="Center" />
+                        <CalendarDatePicker x:Name="NewDateBox" Width="170" SelectedDateChanged="NewDateChanged" />
+                        <ComboBox x:Name="NewHourBox" Width="110" />
+                        <Button Content="Назначить показ" Click="AddViewingClick" />
+                    </StackPanel>
+                    <Grid ColumnDefinitions="Auto,260,Auto,*" RowDefinitions="Auto">
+                        <TextBlock Text="Результат:" VerticalAlignment="Center" Margin="0,0,6,0" />
+                        <ComboBox x:Name="ResultBox" Grid.Column="1" HorizontalAlignment="Stretch" PlaceholderText="Выберите результат">
+                            <ComboBoxItem Content="Заинтересован" />
+                            <ComboBoxItem Content="Не заинтересован" />
+                            <ComboBoxItem Content="Перенос" />
+                        </ComboBox>
+                        <TextBlock Grid.Column="2" Text="Отзыв:" VerticalAlignment="Center" Margin="12,0,6,0" />
+                        <TextBox x:Name="FeedbackBox" Grid.Column="3" />
+                    </Grid>
+                    <Button Content="Отметить выбранный показ проведённым" Click="RecordClick" />
+                </StackPanel>
+            </Border>
+
+            <!-- Панель администратора: скрывается из C# для остальных ролей. -->
+            <Border x:Name="AdminPanel" Classes="panel">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <TextBlock Text="Перенос:" VerticalAlignment="Center" />
+                    <CalendarDatePicker x:Name="MoveDateBox" Width="170" SelectedDateChanged="MoveDateChanged" />
+                    <ComboBox x:Name="MoveHourBox" Width="110" />
+                    <Button Content="Сохранить дату" Click="SaveDateClick" />
+                    <Button Content="Удалить выбранный показ" Click="DeleteViewingClick" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

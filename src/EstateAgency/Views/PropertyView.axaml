@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="EstateAgency.Views.PropertyView"
+             Tag="Объект и оформление заявки">
+    <ScrollViewer>
+        <Grid ColumnDefinitions="*,*">
+            <!-- Левая колонка: сведения об объекте. -->
+            <StackPanel Spacing="8" Margin="0,0,16,0">
+                <TextBlock x:Name="NameText" Classes="heading" />
+                <Image x:Name="PropertyImage" Height="210" HorizontalAlignment="Left" Stretch="Uniform" />
+                <TextBlock x:Name="AddressText" />
+                <TextBlock x:Name="ParamsText" />
+                <TextBlock x:Name="DescriptionText" />
+                <TextBlock x:Name="ManagerText" />
+                <TextBlock x:Name="PriceText" FontWeight="Bold" />
+                <TextBlock x:Name="ViewingsText" />
+            </StackPanel>
+
+            <!-- Правая колонка: форма заявки. -->
+            <StackPanel Grid.Column="1" Spacing="6">
+                <TextBlock Text="Тип заявки:" />
+                <ComboBox x:Name="TypeBox" MinWidth="320" SelectionChanged="TypeChanged" />
+                <TextBlock x:Name="CommissionText" FontWeight="Bold" />
+                <TextBlock Text="Дата показа:" />
+                <CalendarDatePicker x:Name="DateBox" Width="200" SelectedDateChanged="DateChanged" />
+                <TextBlock Text="Время показа (только свободное):" />
+                <ComboBox x:Name="HourBox" MinWidth="200" />
+                <!-- Выбор клиента: панель видна только менеджеру и администратору. -->
+                <StackPanel x:Name="ClientPanel" Spacing="6">
+                    <TextBlock Text="Клиент, для которого оформляется заявка:" />
+                    <ComboBox x:Name="ClientBox" MinWidth="420" />
+                </StackPanel>
+                <TextBlock Text="Примечание:" />
+                <TextBox x:Name="NotesBox" Height="60" TextWrapping="Wrap" AcceptsReturn="True" />
+                <TextBlock Classes="muted" Text="Заявка сохранится только после нажатия «Подать заявку»." />
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="SaveButton" Content="Подать заявку" Classes="accent" Click="SaveClick" />
+                    <Button Content="Обновить карточку" Click="ReloadClick" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

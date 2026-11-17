@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="EstateAgency.Views.ReportsView"
+             Tag="Отчёт по заявкам">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Spacing="8">
+            <TextBlock Classes="heading" Text="Отчёт по заявкам и сделкам" />
+            <TextBlock Classes="muted" Text="Конверсия — доля завершённых заявок среди всех. Комиссия считается только по завершённым сделкам." />
+            <Button Content="Обновить" Click="ReloadClick" />
+            <!-- Заголовок таблицы. -->
+            <Border Classes="panel">
+                <Grid ColumnDefinitions="*,80,90,100,90,110,190">
+                    <TextBlock Text="Менеджер" FontWeight="SemiBold" />
+                    <TextBlock Grid.Column="1" Text="Всего" FontWeight="SemiBold" />
+                    <TextBlock Grid.Column="2" Text="Активных" FontWeight="SemiBold" />
+                    <TextBlock Grid.Column="3" Text="Завершено" FontWeight="SemiBold" />
+                    <TextBlock Grid.Column="4" Text="Отменено" FontWeight="SemiBold" />
+                    <TextBlock Grid.Column="5" Text="Конверсия" FontWeight="SemiBold" />
+                    <TextBlock Grid.Column="6" Text="Комиссия" FontWeight="SemiBold" />
+                </Grid>
+            </Border>
+        </StackPanel>
+        <ItemsControl x:Name="RowsList" Margin="0,4,0,0">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,80,90,100,90,110,190" Margin="12,6">
+                        <TextBlock Text="{Binding Manager}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Total}" />
+                        <TextBlock Grid.Column="2" Text="{Binding Active}" />
+                        <TextBlock Grid.Column="3" Text="{Binding Done}" />
+                        <TextBlock Grid.Column="4" Text="{Binding Canceled}" />
+                        <TextBlock Grid.Column="5" Text="{Binding ConversionText}" />
+                        <TextBlock Grid.Column="6" Text="{Binding CommissionText}" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="EstateAgency.Views.RequestsView"
+             Tag="Список заявок">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Spacing="8">
+            <TextBlock x:Name="HeaderText" Classes="heading" Text="Список заявок" />
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Открыть заявку" Classes="accent" Click="OpenClick" />
+                <Button x:Name="NewButton" Content="Новая заявка" Click="NewClick" />
+                <Button Content="Обновить" Click="ReloadClick" />
+            </StackPanel>
+            <TextBlock x:Name="CountText" />
+        </StackPanel>
+        <!-- Каждая заявка показывается текстом из Request.ToString() (файл ModelExtras.cs). -->
+        <ListBox x:Name="RequestsList" Margin="0,6,0,0" />
+    </DockPanel>
+</UserControl>
